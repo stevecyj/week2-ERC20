@@ -16,6 +16,16 @@
 						"internalType": "string",
 						"name": "_symbol",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_mintPrice",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -210,9 +220,35 @@
 			},
 			{
 				"inputs": [],
+				"name": "maxSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "mint",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -345,6 +381,19 @@
 					}
 				],
 				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_mintPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "setMintPrice",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -665,11 +714,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0xdddacf062ce3f015fec0687f28ead8ca168dfdd9a24f651ee16d61b2152580c9",
+			"keccak256": "0x3fe9054c6f15adfad6159254c448d4a63657b80b92fb5897894b41cff50cb2db",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1a75f39fd1fa56f22fa66efd14757bba06d53f11606bd55475ceb3f41b1072f5",
-				"dweb:/ipfs/QmTyS9gEfYbRwdWzbMAUfx7YpdkSrV1tJBdJWHvrGSKBy9"
+				"bzz-raw://87c3fecc2a263e42728332dcdb7c29517a44387d24b65c0d757c3033ee4e91f6",
+				"dweb:/ipfs/QmSAHEwyqFLTGHGx58RqDuzYpNAyLEdqKi4SNhNdXfKvPu"
 			]
 		}
 	},

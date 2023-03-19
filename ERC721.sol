@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 contract MyNFT is ERC721, Ownable {
-    /* whitelist
+    /* 組員whitelist
     [
         "0xb8a813833b6032b90a658231e1aa71da1e7ea2ed",
         "0x665E0998e82F0293103C4331534Fd346e270FEc3",
@@ -15,16 +15,23 @@ contract MyNFT is ERC721, Ownable {
     ]
      */
     uint256 public tokenId = 0;
+    uint256 public maxSupply;
     address public contractOwner; // ERC721 變數衝突
     bytes32 public root;
+    uint256 public mintPrice;
 
     // 讓 unit256 可以使用 toString()
     using Strings for uint256;
 
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol)
-    {
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint256 _maxSupply,
+        uint256 _mintPrice
+    ) ERC721(_name, _symbol) {
         contractOwner = msg.sender;
+        maxSupply = _maxSupply;
+        mintPrice = _mintPrice;
     }
 
     modifier verifyProof(bytes32[] memory proof) {
@@ -39,8 +46,10 @@ contract MyNFT is ERC721, Ownable {
         _;
     }
 
-    // 鑄造
-    function mint() external {
+    // 付費鑄造
+    function mint() external payable {
+        require(tokenId < maxSupply, "Max supply reached");
+        require(msg.value == mintPrice, "Incorrect amount sent");
         tokenId++;
         _safeMint(msg.sender, tokenId);
     }
@@ -70,10 +79,12 @@ contract MyNFT is ERC721, Ownable {
                 : "";
     }
 
+    // 白名單鑄造
     function whitelistMint(bytes32[] calldata _proof)
         external
         verifyProof(_proof)
     {
+        require(tokenId < maxSupply, "Max supply reached");
         tokenId++;
         _safeMint(msg.sender, tokenId);
     }
@@ -92,5 +103,10 @@ contract MyNFT is ERC721, Ownable {
     function setRoot(bytes32 _root) external {
         require(msg.sender == contractOwner, "Only owner can set root");
         root = _root;
+    }
+
+    // 設定 mintPrice
+    function setMintPrice(uint256 _mintPrice) external onlyOwner {
+        mintPrice = _mintPrice;
     }
 }
