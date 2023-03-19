@@ -4,6 +4,7 @@ pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 contract MyNFT is ERC721, Ownable {
     /* whitelist
@@ -15,6 +16,7 @@ contract MyNFT is ERC721, Ownable {
      */
     uint256 public tokenId = 0;
     address public contractOwner; // ERC721 變數衝突
+    bytes32 public root;
 
     // 讓 unit256 可以使用 toString()
     using Strings for uint256;
@@ -23,6 +25,18 @@ contract MyNFT is ERC721, Ownable {
         ERC721(_name, _symbol)
     {
         contractOwner = msg.sender;
+    }
+
+    modifier verifyProof(bytes32[] memory proof) {
+        require(
+            MerkleProof.verify(
+                proof,
+                root,
+                keccak256(abi.encodePacked(msg.sender))
+            ),
+            "Invalid proof"
+        );
+        _;
     }
 
     // 鑄造
@@ -56,5 +70,19 @@ contract MyNFT is ERC721, Ownable {
                 : "";
     }
 
-    // 設定 whitelist
+    // 確認有通過驗證
+    function verify(bytes32[] memory proof) external view returns (bool) {
+        return
+            MerkleProof.verify(
+                proof,
+                root,
+                keccak256(abi.encodePacked(msg.sender))
+            );
+    }
+
+    // 設定 root
+    function setRoot(bytes32 _root) external {
+        require(msg.sender == contractOwner, "Only owner can set root");
+        root = _root;
+    }
 }

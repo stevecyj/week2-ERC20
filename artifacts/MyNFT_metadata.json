@@ -268,6 +268,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "root",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -332,6 +345,19 @@
 					}
 				],
 				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_root",
+						"type": "bytes32"
+					}
+				],
+				"name": "setRoot",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -434,6 +460,25 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "proof",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -574,6 +619,14 @@
 				"dweb:/ipfs/QmVhVa6LGuzAcB8qgDtVHRkucn4ihj5UZr8xBLcJkP6ucb"
 			]
 		},
+		"@openzeppelin/contracts/utils/cryptography/MerkleProof.sol": {
+			"keccak256": "0xd466e8b07f4c6220eac16da5127f3ff142e65f0c15c03c7d38f257b02c8585e1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e6b3cab69f655e40117bbdd8e68d7423f26d1b24248fb189c295f08de8940616",
+				"dweb:/ipfs/QmWoyRthsBDMa7gJpH5UCjpa8uNUQfyaGbSgY3uvhBH9F3"
+			]
+		},
 		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
 			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
 			"license": "MIT",
@@ -599,11 +652,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0xc414dee9854c381bf17e0b5a734d60f0b5d5e9af6402e83c19fe20a45ca18222",
+			"keccak256": "0x9bd748c18f48578ffaeb1ea1713c69236ff3b65175290ceb8f36efac4140fa5b",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://2df3cee8ab568ff9578a58f12d9f0f32096efe12070b1a070a6f09ced4494510",
-				"dweb:/ipfs/QmafTv1tXE8UvWkugHDzvQdVNseYAaAQ6KiF76nrZfDXKP"
+				"bzz-raw://61d12e4235975e763b3605dbd6a49588594787f2f072bd1e985ab729fb340f7f",
+				"dweb:/ipfs/QmRAwTV5BnHoTGKqtGFjDA1aC1Dx6LiNmhu1oYdTEf9yZV"
 			]
 		}
 	},
