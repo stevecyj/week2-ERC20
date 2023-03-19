@@ -5,6 +5,7 @@ pragma solidity 0.8.17;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract MyNFT is ERC721, Ownable {
     /* 組員whitelist
@@ -14,24 +15,71 @@ contract MyNFT is ERC721, Ownable {
         "0xeDB58E4c8B7911bA899603bE5C404cd504502e43"
     ]
      */
+
+    struct Auction {
+        uint256 startTime; // 開始時間
+        uint256 timeStep; // 每個時間階段
+        uint256 startPrice; // 開始價格
+        uint256 endPrice; // 結束價格
+        uint256 priceStep; // 價格階段
+        uint256 stepNumber; // 間隔次數
+    }
+
     uint256 public tokenId = 0;
     uint256 public maxSupply;
     address public contractOwner; // ERC721 變數衝突
     bytes32 public root;
-    uint256 public mintPrice;
+    // uint256 public mintPrice;
+    Auction public auction;
+
+    // "50000000000000000" -> 0.05 ether
+    // 給前端的資料
+    function getAuctionPrice() public view returns (uint256) {
+        Auction memory currentAuction = auction;
+        if (block.timestamp < currentAuction.startTime) {
+            return currentAuction.startPrice;
+        }
+        uint256 step = (block.timestamp - currentAuction.startTime) /
+            currentAuction.timeStep;
+        if (step > currentAuction.stepNumber) {
+            step = currentAuction.stepNumber;
+        }
+        return
+            currentAuction.startPrice > step * currentAuction.priceStep
+                ? currentAuction.startPrice - step * currentAuction.priceStep
+                : currentAuction.endPrice;
+    }
+
+    function setAuction(
+        uint256 _startTime,
+        uint256 _timeStep,
+        uint256 _startPrice,
+        uint256 _endPrice,
+        uint256 _priceStep,
+        uint256 _stepNumber
+    ) public onlyOwner {
+        auction.startTime = _startTime; // 開始時間
+        auction.timeStep = _timeStep; // 5 多久扣一次
+        auction.startPrice = _startPrice; // 50000000000000000 起始金額
+        auction.endPrice = _endPrice; // 10000000000000000 最後金額
+        auction.priceStep = _priceStep; // 10000000000000000 每次扣除多少金額
+        auction.stepNumber = _stepNumber; // 5 幾個階段
+    }
 
     // 讓 unit256 可以使用 toString()
     using Strings for uint256;
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
     constructor(
         string memory _name,
         string memory _symbol,
-        uint256 _maxSupply,
-        uint256 _mintPrice
+        uint256 _maxSupply
+        // uint256 _mintPrice
     ) ERC721(_name, _symbol) {
         contractOwner = msg.sender;
         maxSupply = _maxSupply;
-        mintPrice = _mintPrice;
+        // mintPrice = _mintPrice;
     }
 
     modifier verifyProof(bytes32[] memory proof) {
@@ -52,11 +100,19 @@ contract MyNFT is ERC721, Ownable {
         _;
     }
 
-    // 付費鑄造
+    // function auctionMint() external payable {
+    //     require(msg.value >= getAuctionPrice(), "not enough value");
+    //     uint256 tokenId = _tokenIds.current();
+    //     _mint(msg.sender, tokenId);
+    //     _tokenIds.increment();
+    // }
+
+    // 付費鑄造(取得荷蘭拍的價格、比較tokenId)
     function mint() external payable maxSupplyNotReached {
-        require(msg.value == mintPrice, "Incorrect amount sent");
-        tokenId++;
+        require(msg.value >= getAuctionPrice(), "not enough value");
+        tokenId = _tokenIds.current();
         _safeMint(msg.sender, tokenId);
+        _tokenIds.increment();
     }
 
     // 取得 baseURI
@@ -111,7 +167,7 @@ contract MyNFT is ERC721, Ownable {
     }
 
     // 設定 mintPrice
-    function setMintPrice(uint256 _mintPrice) external onlyOwner {
-        mintPrice = _mintPrice;
-    }
+    // function setMintPrice(uint256 _mintPrice) external onlyOwner {
+    //     mintPrice = _mintPrice;
+    // }
 }

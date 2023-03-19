@@ -21,11 +21,6 @@
 						"internalType": "uint256",
 						"name": "_maxSupply",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_mintPrice",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -144,6 +139,44 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "auction",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timeStep",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "priceStep",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stepNumber",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -195,6 +228,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getAuctionPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -236,19 +282,6 @@
 				"name": "mint",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "mintPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -389,11 +422,36 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_mintPrice",
+						"name": "_startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_timeStep",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_priceStep",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_stepNumber",
 						"type": "uint256"
 					}
 				],
-				"name": "setMintPrice",
+				"name": "setAuction",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -673,6 +731,14 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
+		"@openzeppelin/contracts/utils/Counters.sol": {
+			"keccak256": "0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://59e1c62884d55b70f3ae5432b44bb3166ad71ae3acd19c57ab6ddc3c87c325ee",
+				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
+			]
+		},
 		"@openzeppelin/contracts/utils/Strings.sol": {
 			"keccak256": "0xa4d1d62251f8574deb032a35fc948386a9b4de74b812d4f545a1ac120486b48a",
 			"license": "MIT",
@@ -714,11 +780,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0x4b076b7bb1668e3b79afdf3a43c24a4e82a1284b2a8ac4331f920a0d83387dc9",
+			"keccak256": "0xe9a5db381a1955b9a9d41ee1f9a7a3cc7fa13794f606602b448e6774204a0ffb",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://f900d55ec7d8b86b0bccf7c0746a86384cfe62a75efbf051938a3a1d9842dba0",
-				"dweb:/ipfs/QmXD4Vez2JQDK4U7kMDTRcAC8YddpMBPU9RRmH7hahLsJt"
+				"bzz-raw://89aa52bf8fc583d5e19e9ba1652d5e9a94ffd87d9ef025ce8ceb115611f22bf2",
+				"dweb:/ipfs/QmNqKcSaBp8HzAnX5NqAjmt1phB8fbhJSZWFs5dSqwzv1n"
 			]
 		}
 	},
