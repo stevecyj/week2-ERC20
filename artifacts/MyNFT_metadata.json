@@ -77,6 +77,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -229,6 +248,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -346,7 +372,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "_tokenId",
 						"type": "uint256"
 					}
 				],
@@ -383,6 +409,38 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "whitelist",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -403,8 +461,14 @@
 				"name()": {
 					"details": "See {IERC721Metadata-name}."
 				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
 				"ownerOf(uint256)": {
 					"details": "See {IERC721-ownerOf}."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
 				},
 				"safeTransferFrom(address,address,uint256)": {
 					"details": "See {IERC721-safeTransferFrom}."
@@ -421,11 +485,11 @@
 				"symbol()": {
 					"details": "See {IERC721Metadata-symbol}."
 				},
-				"tokenURI(uint256)": {
-					"details": "See {IERC721Metadata-tokenURI}."
-				},
 				"transferFrom(address,address,uint256)": {
 					"details": "See {IERC721-transferFrom}."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
 			"version": 1
@@ -452,6 +516,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
+				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
+			]
+		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
 			"keccak256": "0x1e854874c68bec05be100dc0092cb5fbbc71253d370ae98ddef248bbfc3fe118",
 			"license": "MIT",
@@ -533,11 +605,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0x914363c80bcdabbfd7ed3fad206e0c33618a7aa11c916b9ed52ca0987ac91c6f",
+			"keccak256": "0xbcd81b1bebfd4540e5bd73cdbd3e7b98a588a08b6e89cb59020079c3872ba025",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://9fc8ef3e7952162067e5d3e178ea4f036bca76ba7a309ed5bfadecd3ce864158",
-				"dweb:/ipfs/QmSrSBtsEfPM7qASBea7ZgzxRMjL86iNGZAi12wPHCTmK9"
+				"bzz-raw://13687a96d12dd73002366188580c61534a12117bec7c464874dfa8d2c9ac12fb",
+				"dweb:/ipfs/QmQNJ196xdBa5FBUQueRcP3djCsePa3232CArMJS4fWBFG"
 			]
 		}
 	},
