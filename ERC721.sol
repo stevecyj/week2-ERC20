@@ -70,6 +70,14 @@ contract MyNFT is ERC721, Ownable {
                 : "";
     }
 
+    function whitelistMint(bytes32[] calldata _proof)
+        external
+        verifyProof(_proof)
+    {
+        tokenId++;
+        _safeMint(msg.sender, tokenId);
+    }
+
     // 確認有通過驗證
     function verify(bytes32[] memory proof) external view returns (bool) {
         return

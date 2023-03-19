@@ -480,6 +480,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "_proof",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "whitelistMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -652,11 +665,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0x9bd748c18f48578ffaeb1ea1713c69236ff3b65175290ceb8f36efac4140fa5b",
+			"keccak256": "0xdddacf062ce3f015fec0687f28ead8ca168dfdd9a24f651ee16d61b2152580c9",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://61d12e4235975e763b3605dbd6a49588594787f2f072bd1e985ab729fb340f7f",
-				"dweb:/ipfs/QmRAwTV5BnHoTGKqtGFjDA1aC1Dx6LiNmhu1oYdTEf9yZV"
+				"bzz-raw://1a75f39fd1fa56f22fa66efd14757bba06d53f11606bd55475ceb3f41b1072f5",
+				"dweb:/ipfs/QmTyS9gEfYbRwdWzbMAUfx7YpdkSrV1tJBdJWHvrGSKBy9"
 			]
 		}
 	},
