@@ -6,9 +6,15 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyNFT is ERC721, Ownable {
-    mapping(address => bool) public whitelist;
+    /* whitelist
+    [
+        "0xb8a813833b6032b90a658231e1aa71da1e7ea2ed",
+        "0x665E0998e82F0293103C4331534Fd346e270FEc3",
+        "0xeDB58E4c8B7911bA899603bE5C404cd504502e43"
+    ]
+     */
     uint256 public tokenId = 0;
-    // address public owner;
+    address public contractOwner; // ERC721 變數衝突
 
     // 讓 unit256 可以使用 toString()
     using Strings for uint256;
@@ -16,7 +22,7 @@ contract MyNFT is ERC721, Ownable {
     constructor(string memory _name, string memory _symbol)
         ERC721(_name, _symbol)
     {
-        // owner = msg.sender;
+        contractOwner = msg.sender;
     }
 
     // 鑄造
@@ -51,5 +57,4 @@ contract MyNFT is ERC721, Ownable {
     }
 
     // 設定 whitelist
-    function
 }

@@ -153,6 +153,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "contractOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -422,25 +435,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "whitelist",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -605,11 +599,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0xbcd81b1bebfd4540e5bd73cdbd3e7b98a588a08b6e89cb59020079c3872ba025",
+			"keccak256": "0xc414dee9854c381bf17e0b5a734d60f0b5d5e9af6402e83c19fe20a45ca18222",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://13687a96d12dd73002366188580c61534a12117bec7c464874dfa8d2c9ac12fb",
-				"dweb:/ipfs/QmQNJ196xdBa5FBUQueRcP3djCsePa3232CArMJS4fWBFG"
+				"bzz-raw://2df3cee8ab568ff9578a58f12d9f0f32096efe12070b1a070a6f09ced4494510",
+				"dweb:/ipfs/QmafTv1tXE8UvWkugHDzvQdVNseYAaAQ6KiF76nrZfDXKP"
 			]
 		}
 	},
