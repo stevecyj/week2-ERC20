@@ -46,9 +46,14 @@ contract MyNFT is ERC721, Ownable {
         _;
     }
 
-    // 付費鑄造
-    function mint() external payable {
+    // 檢查總發行量
+    modifier maxSupplyNotReached() {
         require(tokenId < maxSupply, "Max supply reached");
+        _;
+    }
+
+    // 付費鑄造
+    function mint() external payable maxSupplyNotReached {
         require(msg.value == mintPrice, "Incorrect amount sent");
         tokenId++;
         _safeMint(msg.sender, tokenId);
@@ -83,8 +88,8 @@ contract MyNFT is ERC721, Ownable {
     function whitelistMint(bytes32[] calldata _proof)
         external
         verifyProof(_proof)
+        maxSupplyNotReached
     {
-        require(tokenId < maxSupply, "Max supply reached");
         tokenId++;
         _safeMint(msg.sender, tokenId);
     }

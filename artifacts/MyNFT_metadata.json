@@ -714,11 +714,11 @@
 			]
 		},
 		"ERC721.sol": {
-			"keccak256": "0x3fe9054c6f15adfad6159254c448d4a63657b80b92fb5897894b41cff50cb2db",
+			"keccak256": "0x4b076b7bb1668e3b79afdf3a43c24a4e82a1284b2a8ac4331f920a0d83387dc9",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://87c3fecc2a263e42728332dcdb7c29517a44387d24b65c0d757c3033ee4e91f6",
-				"dweb:/ipfs/QmSAHEwyqFLTGHGx58RqDuzYpNAyLEdqKi4SNhNdXfKvPu"
+				"bzz-raw://f900d55ec7d8b86b0bccf7c0746a86384cfe62a75efbf051938a3a1d9842dba0",
+				"dweb:/ipfs/QmXD4Vez2JQDK4U7kMDTRcAC8YddpMBPU9RRmH7hahLsJt"
 			]
 		}
 	},
